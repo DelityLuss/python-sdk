@@ -4,12 +4,14 @@ from .upload import UploadResource
 from .webhook import WebhookResource
 from .short_link import ShortLinkResource
 from .whitelabel import WhiteLabelResource
+from .pinterest import PinterestResource
 
 __all__ = [
-    'AccountResource', 
-    'TeamResource', 
-    'UploadResource', 
+    'AccountResource',
+    'TeamResource',
+    'UploadResource',
     'WebhookResource',
     'ShortLinkResource',
-    'WhiteLabelResource'
+    'WhiteLabelResource',
+    'PinterestResource',
 ]

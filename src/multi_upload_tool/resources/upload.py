@@ -14,23 +14,23 @@ class UploadResource(Resource):
         if status: params['status'] = status
         if search: params['search'] = search
         
-        return self.client.request("GET", "/uploads", params=params).get("data", [])
+        return self.client.request("GET", "/upload", params=params).get("data", [])
 
     def get(self, upload_id: int) -> Dict[str, Any]:
         """Get upload details."""
-        return self.client.request("GET", f"/uploads/{upload_id}").get("data", {})
-    
+        return self.client.request("GET", f"/upload/{upload_id}").get("data", {})
+
     def update(self, upload_id: int, **kwargs) -> Dict[str, Any]:
         """Update upload details."""
         data = {}
-        if 'title' in kwargs: data['title'] = kwargs['title'] 
+        if 'title' in kwargs: data['title'] = kwargs['title']
         if 'description' in kwargs: data['description'] = kwargs['description']
         if 'scheduledFor' in kwargs: data['scheduledFor'] = kwargs['scheduledFor']
-        return self.client.request("PUT", f"/uploads/{upload_id}", json=data).get("data", {})
-    
-    def limit(self) -> Dict[str, Any]:
-        """Update upload limit."""
-        return self.client.request("PUT", f"/limits").get("data", {})
+        return self.client.request("PATCH", f"/upload/{upload_id}", json=data).get("data", {})
+
+    def limits(self, account_id: int) -> Dict[str, Any]:
+        """Get upload limits for a connected account."""
+        return self.client.request("GET", f"/limits/{account_id}").get("data", {})
 
     def _upload_file(self, account_id: Union[str, int], 
                      files: Dict[str, Any], data: Dict[str, Any],

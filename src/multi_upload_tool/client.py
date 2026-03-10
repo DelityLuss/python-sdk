@@ -3,12 +3,13 @@ from typing import Dict, Any, Optional
 from urllib.parse import urljoin
 from .exceptions import AuthenticationError, APIError
 from .resources import (
-    AccountResource, 
-    TeamResource, 
-    UploadResource, 
+    AccountResource,
+    TeamResource,
+    UploadResource,
     WebhookResource,
     ShortLinkResource,
-    WhiteLabelResource
+    WhiteLabelResource,
+    PinterestResource,
 )
 
 class MultiUploadClient:
@@ -37,6 +38,7 @@ class MultiUploadClient:
         self.webhooks = WebhookResource(self)
         self.short_links = ShortLinkResource(self)
         self.whitelabel = WhiteLabelResource(self)
+        self.pinterest = PinterestResource(self)
 
     def request(self, method: str, endpoint: str, **kwargs) -> Any:
         """

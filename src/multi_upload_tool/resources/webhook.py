@@ -4,7 +4,7 @@ from .base import Resource
 class WebhookResource(Resource):
     def list(self) -> List[Dict[str, Any]]:
         """List all webhooks."""
-        return self.client.request("GET", "/webhooks").get("webhooks", [])
+        return self.client.request("GET", "/webhooks").get("data", [])
 
     def create(self, url: str, events: List[str], description: Optional[str] = None) -> Dict[str, Any]:
         """
